@@ -7,7 +7,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.sql.SQLException;
-
 @Path("/login")
 public class LoginResource {
     private LoginRepository repository = new LoginRepository();
@@ -35,7 +34,7 @@ public class LoginResource {
     @Path("{cdLogin}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLoginByCdLogin(@PathParam("cdLogin") String cdLogin) throws SQLException {
-        var foundLogin = repository.find(cdLogin, null); // Assuming dsSenha is not required for this query
+        var foundLogin = repository.find(cdLogin, null);
         if (foundLogin.isPresent()) {
             return Response.status(Response.Status.OK).entity(foundLogin.get()).build();
         }
@@ -47,10 +46,10 @@ public class LoginResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateLogin(@PathParam("cdLogin") String cdLogin, Login login) throws SQLException {
-        var existingLogin = repository.find(cdLogin, null); // Assuming dsSenha is not required for this query
+        var existingLogin = repository.find(cdLogin, null);
         if (existingLogin.isPresent()) {
             repository.update(login);
-            var updatedLogin = repository.find(cdLogin, null); // Assuming dsSenha is not required for this query
+            var updatedLogin = repository.find(cdLogin, null);
             return Response.status(Response.Status.OK).entity(updatedLogin.get()).build();
         }
         return Response.status(Response.Status.NOT_FOUND).entity(login).build();
@@ -59,7 +58,7 @@ public class LoginResource {
     @DELETE
     @Path("{cdLogin}")
     public Response deleteLogin(@PathParam("cdLogin") String cdLogin) throws SQLException {
-        var existingLogin = repository.find(cdLogin, null); // Assuming dsSenha is not required for this query
+        var existingLogin = repository.find(cdLogin, null);
         if (existingLogin.isPresent()) {
             repository.delete(cdLogin);
             return Response.status(Response.Status.NO_CONTENT).build();

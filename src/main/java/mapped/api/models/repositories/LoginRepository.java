@@ -10,12 +10,12 @@ import java.util.Optional;
 public class LoginRepository {
 
     public void add(Login login) throws SQLException {
-        var sql = "INSERT INTO LOGIN (CD_LOGIN, DS_EMAIL, DS_SENHA, FG_ATIVO) VALUES (?,?,?,?)";
+        var sql = "INSERT INTO t_gs_login (cdLogin, dsEmail, dsSenha, fgAtivo) VALUES (?,?,?,?)";
 
         try {
             var conn = DatabaseFactory.getConnection();
             var statement = conn.prepareStatement(sql);
-            statement.setString(1, login.getCdLogin());
+            statement.setInt(1, login.getCdLogin());
             statement.setString(2, login.getDsEmail());
             statement.setString(3, login.getDsSenha());
             statement.setInt(4, login.getFgAtivo());
@@ -26,7 +26,7 @@ public class LoginRepository {
     }
 
     public Optional<Login> find(String cdLogin, String dsSenha) throws SQLException {
-        var sql = "SELECT * FROM LOGIN WHERE CD_LOGIN = ? AND DS_SENHA = ?";
+        var sql = "SELECT * FROM t_gs_login WHERE cdLogin = ? AND dsSenha = ?";
 
         try {
             var conn = DatabaseFactory.getConnection();
@@ -37,7 +37,7 @@ public class LoginRepository {
                 ResultSet rs = statement.executeQuery();
                 if (rs.next()) {
                     var login = new Login(
-                            rs.getString("cdLogin"),
+                            rs.getInt("cdLogin"),
                             rs.getString("dsEmail"),
                             rs.getString("dsSenha"),
                             rs.getInt("fgAtivo")
@@ -52,10 +52,32 @@ public class LoginRepository {
         }
         return Optional.empty();
     }
+    public void update(Login login) throws SQLException {
+        var sql = "UPDATE t_gs_login SET dsEmail = ?, dsSenha = ?, fgAtivo = ? WHERE cdLogin = ?";
 
-    public void update(Login login) {
+        try {
+            var conn = DatabaseFactory.getConnection();
+            var statement = conn.prepareStatement(sql);
+            statement.setString(1, login.getDsEmail());
+            statement.setString(2, login.getDsSenha());
+            statement.setInt(3, login.getFgAtivo());
+            statement.setInt(4, login.getCdLogin());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException(e);
+        }
     }
 
-    public void delete(String cdLogin) {
+    public void delete(String cdLogin) throws SQLException {
+        var sql = "DELETE FROM t_gs_login WHERE cdLogin = ?";
+
+        try {
+            var conn = DatabaseFactory.getConnection();
+            var statement = conn.prepareStatement(sql);
+            statement.setString(1, cdLogin);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException(e);
+        }
     }
 }

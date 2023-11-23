@@ -1,7 +1,7 @@
 package mapped.api.models.entities;
 
 public class Login {
-    private String cdLogin;
+    private int cdLogin;
     private String dsEmail;
     private String dsSenha;
     private Integer fgAtivo;
@@ -9,18 +9,18 @@ public class Login {
     public Login() {
     }
 
-    public Login(String cdLogin, String dsEmail, String dsSenha, Integer fgAtivo) {
+    public Login(int cdLogin, String dsEmail, String dsSenha, Integer fgAtivo) {
         this.cdLogin = cdLogin;
         this.dsEmail = dsEmail;
         this.dsSenha = dsSenha;
         this.fgAtivo = fgAtivo;
     }
 
-    public String getCdLogin() {
+    public int getCdLogin() {
         return cdLogin;
     }
 
-    public void setCdLogin(String cdLogin) {
+    public void setCdLogin(int cdLogin) {
         this.cdLogin = cdLogin;
     }
 
