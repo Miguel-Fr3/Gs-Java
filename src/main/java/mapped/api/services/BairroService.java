@@ -1,4 +1,4 @@
-package mapped.api.models.services;
+package mapped.api.services;
 
 import mapped.api.models.entities.Bairro;
 import mapped.api.models.repositories.BairroRepository;

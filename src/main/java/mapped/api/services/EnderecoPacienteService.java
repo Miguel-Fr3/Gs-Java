@@ -1,4 +1,4 @@
-package mapped.api.models.services;
+package mapped.api.services;
 
 import mapped.api.models.entities.EnderecoPaciente;
 import mapped.api.models.repositories.EnderecoPacienteRepository;

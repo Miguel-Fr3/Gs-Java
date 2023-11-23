@@ -1,4 +1,4 @@
-package mapped.api.models.services;
+package mapped.api.services;
 
 import mapped.api.models.entities.PlanoSaude;
 import mapped.api.models.repositories.PlanoSaudeRepository;
