@@ -60,10 +60,18 @@ public class LoginResource {
         LoginRetornoDto response;
         try {
             LoginService loginService = new LoginService();
+
+
+
+            System.out.println(login.getDsEmail());
+            System.out.println(login.getDsSenha());
             boolean result = loginService.login(login.getDsEmail(), login.getDsSenha());
-            response = new LoginRetornoDto(result);
+
+
             System.out.println(result);
 
+
+            response = new LoginRetornoDto(result);
 
             if (result) {
                 return Response.status(Response.Status.OK).entity(response).build();
@@ -80,7 +88,6 @@ public class LoginResource {
         }
         return Response.status(Response.Status.UNAUTHORIZED).entity(response).build();
     }
-
 
 
     @GET
