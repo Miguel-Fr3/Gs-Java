@@ -1,21 +1,23 @@
 package mapped.api.models.entities;
 
+import java.util.Date;
+
 public class PlanoSaude {
-    private String cdPlanoSaude;
+    private Integer cdPlanoSaude;
     private String dsRazaoSocial;
     private String nmFantasia;
     private String dsPlanoSaude;
-    private String nrCnpj;
+    private Integer nrCnpj;
     private String nmContato;
-    private String nrTelefone;
-    private int dtCadastro;
+    private int nrTelefone;
+    private Date dtCadastro;
     private Integer fgAtivo;
 
     public PlanoSaude() {
     }
 
-    public PlanoSaude(String cdPlanoSaude, String dsRazaoSocial, String nmFantasia, String dsPlanoSaude, String nrCnpj,
-                      String nmContato, String nrTelefone, int dtCadastro, Integer fgAtivo) {
+    public PlanoSaude(Integer cdPlanoSaude, String dsRazaoSocial, String nmFantasia, String dsPlanoSaude, Integer nrCnpj,
+                      String nmContato, int nrTelefone, Date dtCadastro, Integer fgAtivo) {
         this.cdPlanoSaude = cdPlanoSaude;
         this.dsRazaoSocial = dsRazaoSocial;
         this.nmFantasia = nmFantasia;
@@ -27,11 +29,11 @@ public class PlanoSaude {
         this.fgAtivo = fgAtivo;
     }
 
-    public String getCdPlanoSaude() {
+    public Integer getCdPlanoSaude() {
         return cdPlanoSaude;
     }
 
-    public void setCdPlanoSaude(String cdPlanoSaude) {
+    public void setCdPlanoSaude(Integer cdPlanoSaude) {
         this.cdPlanoSaude = cdPlanoSaude;
     }
 
@@ -60,10 +62,10 @@ public class PlanoSaude {
     }
 
     public String getNrCnpj() {
-        return nrCnpj;
+        return String.valueOf(nrCnpj);
     }
 
-    public void setNrCnpj(String nrCnpj) {
+    public void setNrCnpj(Integer nrCnpj) {
         this.nrCnpj = nrCnpj;
     }
 
@@ -76,18 +78,18 @@ public class PlanoSaude {
     }
 
     public String getNrTelefone() {
-        return nrTelefone;
+        return String.valueOf(nrTelefone);
     }
 
     public void setNrTelefone(String nrTelefone) {
-        this.nrTelefone = nrTelefone;
+        this.nrTelefone = Integer.parseInt(nrTelefone);
     }
 
-    public int getDtCadastro() {
+    public Date getDtCadastro() {
         return dtCadastro;
     }
 
-    public void setDtCadastro(int dtCadastro) {
+    public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
     }
 
