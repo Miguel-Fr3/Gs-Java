@@ -15,7 +15,7 @@ public class PacienteRepository {
 
     public List<Paciente> findAll() throws SQLException {
         List<Paciente> pacientes = new ArrayList<>();
-        String sql = "SELECT * FROM tabela_paciente"; 
+        String sql = "SELECT * FROM t_gs_paciente";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql);
@@ -28,7 +28,7 @@ public class PacienteRepository {
     }
 
     public void add(Paciente paciente) throws SQLException {
-        String sql = "INSERT INTO tabela_paciente (cdPaciente, nmPaciente, nrPeso, nrAltura, nmGrupoSanguineo, flSexoBiologico) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO t_gs_paciente (cdPaciente, nmPaciente, nrPeso, nrAltura, nmGrupoSanguineo, flSexoBiologico) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -38,7 +38,7 @@ public class PacienteRepository {
     }
 
     public Optional<Paciente> find(String cdPaciente) throws SQLException {
-        String sql = "SELECT * FROM tabela_paciente WHERE cdPaciente = ?";
+        String sql = "SELECT * FROM t_gs_paciente WHERE cdPaciente = ?";
         Paciente paciente = null;
 
         try (Connection conn = DatabaseFactory.getConnection();
@@ -55,7 +55,7 @@ public class PacienteRepository {
     }
 
     public void update(String cdPaciente, Paciente paciente) {
-        String sql = "UPDATE tabela_paciente SET nmPaciente=?, nrPeso=?, nrAltura=?, nmGrupoSanguineo=?, flSexoBiologico=? WHERE cdPaciente=?";
+        String sql = "UPDATE t_gs_paciente SET nmPaciente=?, nrPeso=?, nrAltura=?, nmGrupoSanguineo=?, flSexoBiologico=? WHERE cdPaciente=?";
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             setPacienteParameters(statement, paciente);
@@ -67,7 +67,7 @@ public class PacienteRepository {
     }
 
     public void delete(String cdPaciente) {
-        String sql = "DELETE FROM tabela_paciente WHERE cdPaciente = ?";
+        String sql = "DELETE FROM t_gs_paciente WHERE cdPaciente = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
