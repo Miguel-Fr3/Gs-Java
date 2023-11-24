@@ -3,10 +3,7 @@ package mapped.api.models.repositories;
 import mapped.api.database.infrastructure.DatabaseFactory;
 import mapped.api.models.entities.TipoContato;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -82,15 +79,15 @@ public class TipoContatoRepository {
         TipoContato tipoContato = new TipoContato();
         tipoContato.setCdTipoContato(resultSet.getString("cdTipoContato"));
         tipoContato.setNmTipoContato(resultSet.getString("nmTipoContato"));
-        tipoContato.setDtInicio(resultSet.getInt("dtInicio"));
-        tipoContato.setDtFim(resultSet.getInt("dtFim"));
+        tipoContato.setDtInicio(resultSet.getDate("dtInicio"));
+        tipoContato.setDtFim(resultSet.getDate("dtFim"));
         return tipoContato;
     }
 
     private void setTipoContatoParameters(PreparedStatement preparedStatement, TipoContato tipoContato) throws SQLException {
         preparedStatement.setString(1, tipoContato.getCdTipoContato());
         preparedStatement.setString(2, tipoContato.getNmTipoContato());
-        preparedStatement.setInt(3, tipoContato.getDtInicio());
-        preparedStatement.setInt(4, tipoContato.getDtFim());
+        preparedStatement.setDate(3, (Date) tipoContato.getDtInicio());
+        preparedStatement.setDate(4, (Date) tipoContato.getDtFim());
     }
 }

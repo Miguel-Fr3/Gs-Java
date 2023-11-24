@@ -1,15 +1,17 @@
 package mapped.api.models.entities;
 
+import java.util.Date;
+
 public class TipoContato {
     private String cdTipoContato;
     private String nmTipoContato;
-    private int dtInicio;
-    private int dtFim;
+    private Date dtInicio;
+    private Date dtFim;
 
     public TipoContato() {
     }
 
-    public TipoContato(String cdTipoContato, String nmTipoContato, int dtInicio, int dtFim) {
+    public TipoContato(String cdTipoContato, String nmTipoContato, Date dtInicio, Date dtFim) {
         this.cdTipoContato = cdTipoContato;
         this.nmTipoContato = nmTipoContato;
         this.dtInicio = dtInicio;
@@ -32,19 +34,19 @@ public class TipoContato {
         this.nmTipoContato = nmTipoContato;
     }
 
-    public int getDtInicio() {
+    public Date getDtInicio() {
         return dtInicio;
     }
 
-    public void setDtInicio(int dtInicio) {
+    public void setDtInicio(Date dtInicio) {
         this.dtInicio = dtInicio;
     }
 
-    public int getDtFim() {
+    public Date getDtFim() {
         return dtFim;
     }
 
-    public void setDtFim(int dtFim) {
+    public void setDtFim(Date dtFim) {
         this.dtFim = dtFim;
     }
 }
