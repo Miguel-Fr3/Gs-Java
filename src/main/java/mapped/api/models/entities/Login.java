@@ -20,6 +20,9 @@ public class Login {
         this.fgAtivo = (fgAtivo != null) ? fgAtivo : 1;
     }
 
+    public Login(int cdLogin, String dsEmail, String dsSenha) {
+    }
+
     public int getCdLogin() {
         return cdLogin;
     }

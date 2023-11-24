@@ -3,8 +3,11 @@ package mapped.api.controllers;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import mapped.api.dtos.LoginDto;
+import mapped.api.dtos.LoginRetornoDto;
 import mapped.api.models.entities.Login;
 import mapped.api.models.repositories.LoginRepository;
+import mapped.api.services.LoginService;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -40,6 +43,45 @@ public class LoginResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Erro interno ao adicionar login").build();
         }
     }
+
+    @GET
+    @Path("/autenticar")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Login> getLoginAut() throws SQLException {
+        return repository.findAll();
+    }
+
+    @POST
+    @Path("/autenticar")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(LoginDto login) {
+        LoginRetornoDto response;
+        try {
+            LoginService loginService = new LoginService();
+            boolean result = loginService.login(login.getDsEmail(), login.getDsSenha());
+            response = new LoginRetornoDto(result);
+            System.out.println(result);
+
+
+            if (result) {
+                return Response.status(Response.Status.OK).entity(response).build();
+
+
+            }
+        } catch (IllegalArgumentException e) {
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Erro interno ao processar autenticação").build();
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).entity(response).build();
+    }
+
+
 
     @GET
     @Path("{cdLogin}")

@@ -21,37 +21,29 @@ public class LoginRepository {
                 logins.add(new Login(
                         results.getInt("cdLogin"),
                         results.getString("dsEmail"),
-                        results.getString("dsSenha"),
-                        results.getInt("fgAtivo")));
+                        results.getString("dsSenha")));
             }
         }
         return logins;
     }
 
     public void add(Login login) {
-        String sql = "INSERT INTO t_gs_login (cdLogin, dsEmail, dsSenha, fgAtivo) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO t_gs_login (cdLogin, dsEmail, dsSenha) VALUES (seq_t_gs_login.NEXTVAL,?,?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setInt(1, login.getCdLogin());
-            statement.setString(2, login.getDsEmail());
-            statement.setString(3, login.getDsSenha());
-
-
-            if (login.getFgAtivo() != null) {
-                statement.setInt(4, login.getFgAtivo());
-            } else {
-
-                statement.setInt(4, 1);
-            }
+            statement.setString(1, login.getDsEmail());
+            statement.setString(2, login.getDsSenha());
 
             statement.executeUpdate();
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.err.println("Erro: Violação de chave única. Certifique-se de que a sequência 'seq_tb_ps_login' está configurada corretamente.");
+            System.err.println("Erro: Violação de chave única. Certifique-se de que a sequência 'seq_t_gs_login' está configurada corretamente.");
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao adicionar login", e);
         }
     }
+
+
 
     public Optional<Login> find(String cdLogin, String dsSenha) throws SQLException {
         String sql = "SELECT * FROM t_gs_login WHERE cdLogin = ? AND dsSenha = ?";
@@ -75,37 +67,33 @@ public class LoginRepository {
         return Optional.empty();
     }
 
-    public Login login(String Email) throws SQLException {
+    public Login login(String email) throws SQLException {
         String sql = "SELECT * FROM T_GS_LOGIN WHERE dsEmail = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
-            try {
-                statement.setString(1, Email);
 
 
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("email inválido", e);
-            }
+            statement.setString(1, email);
 
             try (ResultSet rs = statement.executeQuery()) {
                 Login login = new Login();
 
                 if (rs.next()) {
-                    login.setCdLogin(rs.getInt("cdLOGIN"));
-                    login.setDsEmail(String.valueOf(rs.getLong("dsEmail")));
-                    login.setDsSenha(rs.getString("DSSENHA"));
-                    login.setFgAtivo(Integer.valueOf(rs.getString("fgAtivo")));
+
+                    login.setCdLogin(rs.getInt("cdLogin"));
+                    login.setDsEmail(rs.getString("dsEmail"));
+                    login.setDsSenha(rs.getString("dsSenha"));
                 }
 
                 return login;
             }
         }
-
     }
 
+
     public void update(Login login) throws SQLException {
-        String sql = "UPDATE t_gs_login SET dsEmail = ?, dsSenha = ?, fgAtivo = ? WHERE cdLogin = ?";
+        String sql = "UPDATE t_gs_login SET dsEmail = ?, dsSenha = ? WHERE cdLogin = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
