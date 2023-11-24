@@ -3,10 +3,7 @@ package mapped.api.models.repositories;
 import mapped.api.database.infrastructure.DatabaseFactory;
 import mapped.api.models.entities.Contato;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +12,7 @@ public class ContatoRepository {
 
     public List<Contato> findAll() throws SQLException {
         List<Contato> contatos = new ArrayList<>();
-        String sql = "SELECT * FROM tabela_contato";  // Substitua "tabela_contato" pelo nome correto da sua tabela
+        String sql = "SELECT * FROM t_gs_contato";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql);
@@ -28,7 +25,7 @@ public class ContatoRepository {
     }
 
     public void add(Contato contato) throws SQLException {
-        String sql = "INSERT INTO tabela_contato (cdContato, nmContato, nrDDI, nrDDD, nrTelefone, dtCadastro, cdUsuario, cdTipoContato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO t_gs_contato (cdContato, nmContato, nrDDI, nrDDD, nrTelefone, dtCadastro, cdUsuario, cdTipoContato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -38,7 +35,7 @@ public class ContatoRepository {
     }
 
     public Optional<Contato> find(String cdContato) throws SQLException {
-        String sql = "SELECT * FROM tabela_contato WHERE cdContato = ?";
+        String sql = "SELECT * FROM t_gs_contato WHERE cdContato = ?";
         Contato contato = null;
 
         try (Connection conn = DatabaseFactory.getConnection();
@@ -55,7 +52,7 @@ public class ContatoRepository {
     }
 
     public void update(String cdContato, Contato contato) {
-        String sql = "UPDATE tabela_contato SET nmContato=?, nrDDI=?, nrDDD=?, nrTelefone=?, dtCadastro=?, cdUsuario=?, cdTipoContato=? WHERE cdContato=?";
+        String sql = "UPDATE t_gs_contato SET nmContato=?, nrDDI=?, nrDDD=?, nrTelefone=?, dtCadastro=?, cdUsuario=?, cdTipoContato=? WHERE cdContato=?";
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             setContatoParameters(statement, contato);
@@ -67,7 +64,7 @@ public class ContatoRepository {
     }
 
     public void delete(String cdContato) {
-        String sql = "DELETE FROM tabela_contato WHERE cdContato = ?";
+        String sql = "DELETE FROM t_gs_contato WHERE cdContato = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -80,25 +77,25 @@ public class ContatoRepository {
 
     private Contato mapResultSetToContato(ResultSet resultSet) throws SQLException {
         Contato contato = new Contato();
-        contato.setCdContato(resultSet.getString("cdContato"));
+        contato.setCdContato(resultSet.getInt("cdContato"));
         contato.setNmContato(resultSet.getString("nmContato"));
-        contato.setNrDDI(resultSet.getString("nrDDI"));
-        contato.setNrDDD(resultSet.getString("nrDDD"));
-        contato.setNrTelefone(resultSet.getString("nrTelefone"));
-        contato.setDtCadastro(resultSet.getInt("dtCadastro"));
-        contato.setCdUsuario(resultSet.getString("cdUsuario"));
-        contato.setCdTipoContato(resultSet.getString("cdTipoContato"));
+        contato.setNrDDI(resultSet.getInt("nrDDI"));
+        contato.setNrDDD(resultSet.getInt("nrDDD"));
+        contato.setNrTelefone(resultSet.getInt("nrTelefone"));
+        contato.setDtCadastro(resultSet.getDate("dtCadastro"));
+        contato.setCdUsuario(resultSet.getInt("cdUsuario"));
+        contato.setCdTipoContato(resultSet.getInt("cdTipoContato"));
         return contato;
     }
 
     private void setContatoParameters(PreparedStatement preparedStatement, Contato contato) throws SQLException {
-        preparedStatement.setString(1, contato.getCdContato());
+        preparedStatement.setInt(1, contato.getCdContato());
         preparedStatement.setString(2, contato.getNmContato());
-        preparedStatement.setString(3, contato.getNrDDI());
-        preparedStatement.setString(4, contato.getNrDDD());
-        preparedStatement.setString(5, contato.getNrTelefone());
-        preparedStatement.setInt(6, contato.getDtCadastro());
-        preparedStatement.setString(7, contato.getCdUsuario());
-        preparedStatement.setString(8, contato.getCdTipoContato());
+        preparedStatement.setInt(3, contato.getNrDDI());
+        preparedStatement.setInt(4, contato.getNrDDD());
+        preparedStatement.setInt(5, contato.getNrTelefone());
+        preparedStatement.setDate(6, (Date) contato.getDtCadastro());
+        preparedStatement.setInt(7, contato.getCdUsuario());
+        preparedStatement.setInt(8, contato.getCdTipoContato());
     }
 }

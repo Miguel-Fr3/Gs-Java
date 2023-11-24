@@ -1,21 +1,22 @@
 package mapped.api.models.entities;
 
+import java.util.Date;
+
 public class Contato {
 
-    private String cdContato;
+    private int cdContato;
     private String nmContato;
-    private String nrDDI;
-    private String nrDDD;
-    private String nrTelefone;
-    private int dtCadastro;
-    private String cdUsuario;
-    private String cdTipoContato;
+    private int nrDDI;
+    private int nrDDD;
+    private int nrTelefone;
+    private Date dtCadastro;
+    private int cdUsuario;
+    private int cdTipoContato;
 
     public Contato() {
     }
 
-    public Contato(String cdContato, String nmContato, String nrDDI, String nrDDD, String nrTelefone,
-                   int dtCadastro, String cdUsuario, String cdTipoContato) {
+    public Contato(int cdContato, String nmContato, int nrDDI, int nrDDD, int nrTelefone, Date dtCadastro, int cdUsuario, int cdTipoContato) {
         this.cdContato = cdContato;
         this.nmContato = nmContato;
         this.nrDDI = nrDDI;
@@ -26,11 +27,11 @@ public class Contato {
         this.cdTipoContato = cdTipoContato;
     }
 
-    public String getCdContato() {
+    public int getCdContato() {
         return cdContato;
     }
 
-    public void setCdContato(String cdContato) {
+    public void setCdContato(int cdContato) {
         this.cdContato = cdContato;
     }
 
@@ -42,51 +43,51 @@ public class Contato {
         this.nmContato = nmContato;
     }
 
-    public String getNrDDI() {
+    public int getNrDDI() {
         return nrDDI;
     }
 
-    public void setNrDDI(String nrDDI) {
+    public void setNrDDI(int nrDDI) {
         this.nrDDI = nrDDI;
     }
 
-    public String getNrDDD() {
+    public int getNrDDD() {
         return nrDDD;
     }
 
-    public void setNrDDD(String nrDDD) {
+    public void setNrDDD(int nrDDD) {
         this.nrDDD = nrDDD;
     }
 
-    public String getNrTelefone() {
+    public int getNrTelefone() {
         return nrTelefone;
     }
 
-    public void setNrTelefone(String nrTelefone) {
+    public void setNrTelefone(int nrTelefone) {
         this.nrTelefone = nrTelefone;
     }
 
-    public int getDtCadastro() {
+    public Date getDtCadastro() {
         return dtCadastro;
     }
 
-    public void setDtCadastro(int dtCadastro) {
+    public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
     }
 
-    public String getCdUsuario() {
+    public int getCdUsuario() {
         return cdUsuario;
     }
 
-    public void setCdUsuario(String cdUsuario) {
+    public void setCdUsuario(int cdUsuario) {
         this.cdUsuario = cdUsuario;
     }
 
-    public String getCdTipoContato() {
+    public int getCdTipoContato() {
         return cdTipoContato;
     }
 
-    public void setCdTipoContato(String cdTipoContato) {
+    public void setCdTipoContato(int cdTipoContato) {
         this.cdTipoContato = cdTipoContato;
     }
 }
