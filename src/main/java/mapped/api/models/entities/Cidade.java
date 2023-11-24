@@ -2,24 +2,24 @@ package mapped.api.models.entities;
 
 public class Cidade {
 
-    private String cdCidade;
+    private int cdCidade;
     private String nmCidade;
-    private String cdEstado;
+    private int cdEstado;
 
     public Cidade() {
     }
 
-    public Cidade(String cdCidade, String nmCidade, String cdEstado) {
+    public Cidade(int cdCidade, String nmCidade, int cdEstado) {
         this.cdCidade = cdCidade;
         this.nmCidade = nmCidade;
         this.cdEstado = cdEstado;
     }
 
-    public String getCdCidade() {
+    public int getCdCidade() {
         return cdCidade;
     }
 
-    public void setCdCidade(String cdCidade) {
+    public void setCdCidade(int cdCidade) {
         this.cdCidade = cdCidade;
     }
 
@@ -31,11 +31,11 @@ public class Cidade {
         this.nmCidade = nmCidade;
     }
 
-    public String getCdEstado() {
+    public int getCdEstado() {
         return cdEstado;
     }
 
-    public void setCdEstado(String cdEstado) {
+    public void setCdEstado(int cdEstado) {
         this.cdEstado = cdEstado;
     }
 }
