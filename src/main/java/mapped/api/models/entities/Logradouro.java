@@ -1,26 +1,26 @@
 package mapped.api.models.entities;
 
 public class Logradouro {
-    private String cdLogradouro;
+    private int cdLogradouro;
     private String nmRua;
-    private String nrCep;
-    private String cdBairro;
+    private int nrCep;
+    private int cdBairro;
 
     public Logradouro() {
     }
 
-    public Logradouro(String cdLogradouro, String nmRua, String nrCep, String cdBairro) {
+    public Logradouro(int cdLogradouro, String nmRua, int nrCep, int cdBairro) {
         this.cdLogradouro = cdLogradouro;
         this.nmRua = nmRua;
         this.nrCep = nrCep;
         this.cdBairro = cdBairro;
     }
 
-    public String getCdLogradouro() {
+    public int getCdLogradouro() {
         return cdLogradouro;
     }
 
-    public void setCdLogradouro(String cdLogradouro) {
+    public void setCdLogradouro(int cdLogradouro) {
         this.cdLogradouro = cdLogradouro;
     }
 
@@ -32,19 +32,19 @@ public class Logradouro {
         this.nmRua = nmRua;
     }
 
-    public String getNrCep() {
+    public int getNrCep() {
         return nrCep;
     }
 
-    public void setNrCep(String nrCep) {
+    public void setNrCep(int nrCep) {
         this.nrCep = nrCep;
     }
 
-    public String getCdBairro() {
+    public int getCdBairro() {
         return cdBairro;
     }
 
-    public void setCdBairro(String cdBairro) {
+    public void setCdBairro(int cdBairro) {
         this.cdBairro = cdBairro;
     }
 }
