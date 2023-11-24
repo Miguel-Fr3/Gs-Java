@@ -3,7 +3,7 @@ package mapped.api.models.entities;
 import java.util.Date;
 
 public class TipoContato {
-    private String cdTipoContato;
+    private Integer cdTipoContato;
     private String nmTipoContato;
     private Date dtInicio;
     private Date dtFim;
@@ -11,18 +11,18 @@ public class TipoContato {
     public TipoContato() {
     }
 
-    public TipoContato(String cdTipoContato, String nmTipoContato, Date dtInicio, Date dtFim) {
+    public TipoContato(Integer cdTipoContato, String nmTipoContato, Date dtInicio, Date dtFim) {
         this.cdTipoContato = cdTipoContato;
         this.nmTipoContato = nmTipoContato;
         this.dtInicio = dtInicio;
         this.dtFim = dtFim;
     }
 
-    public String getCdTipoContato() {
+    public Integer getCdTipoContato() {
         return cdTipoContato;
     }
 
-    public void setCdTipoContato(String cdTipoContato) {
+    public void setCdTipoContato(Integer cdTipoContato) {
         this.cdTipoContato = cdTipoContato;
     }
 

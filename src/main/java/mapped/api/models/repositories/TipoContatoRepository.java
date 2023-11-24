@@ -12,7 +12,7 @@ public class TipoContatoRepository {
 
     public List<TipoContato> findAll() throws SQLException {
         List<TipoContato> tiposContato = new ArrayList<>();
-        String sql = "SELECT * FROM tabela_tipo_contato"; 
+        String sql = "SELECT * FROM t_gs_tipo_contato";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class TipoContatoRepository {
     }
 
     public void add(TipoContato tipoContato) throws SQLException {
-        String sql = "INSERT INTO tabela_tipo_contato (cdTipoContato, nmTipoContato, dtInicio, dtFim) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO t_gs_tipo_contato (cdTipoContato, nmTipoContato, dtInicio, dtFim) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -35,7 +35,7 @@ public class TipoContatoRepository {
     }
 
     public Optional<TipoContato> find(String cdTipoContato) throws SQLException {
-        String sql = "SELECT * FROM tabela_tipo_contato WHERE cdTipoContato = ?";
+        String sql = "SELECT * FROM t_gs_tipo_contato WHERE cdTipoContato = ?";
         TipoContato tipoContato = null;
 
         try (Connection conn = DatabaseFactory.getConnection();
@@ -52,7 +52,7 @@ public class TipoContatoRepository {
     }
 
     public void update(String cdTipoContato, TipoContato tipoContato) {
-        String sql = "UPDATE tabela_tipo_contato SET nmTipoContato=?, dtInicio=?, dtFim=? WHERE cdTipoContato=?";
+        String sql = "UPDATE t_gs_tipo_contato SET nmTipoContato=?, dtInicio=?, dtFim=? WHERE cdTipoContato=?";
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             setTipoContatoParameters(statement, tipoContato);
@@ -64,7 +64,7 @@ public class TipoContatoRepository {
     }
 
     public void delete(String cdTipoContato) {
-        String sql = "DELETE FROM tabela_tipo_contato WHERE cdTipoContato = ?";
+        String sql = "DELETE FROM t_gs_tipo_contato WHERE cdTipoContato = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -77,7 +77,7 @@ public class TipoContatoRepository {
 
     private TipoContato mapResultSetToTipoContato(ResultSet resultSet) throws SQLException {
         TipoContato tipoContato = new TipoContato();
-        tipoContato.setCdTipoContato(resultSet.getString("cdTipoContato"));
+        tipoContato.setCdTipoContato(resultSet.getInt("cdTipoContato"));
         tipoContato.setNmTipoContato(resultSet.getString("nmTipoContato"));
         tipoContato.setDtInicio(resultSet.getDate("dtInicio"));
         tipoContato.setDtFim(resultSet.getDate("dtFim"));
@@ -85,7 +85,7 @@ public class TipoContatoRepository {
     }
 
     private void setTipoContatoParameters(PreparedStatement preparedStatement, TipoContato tipoContato) throws SQLException {
-        preparedStatement.setString(1, tipoContato.getCdTipoContato());
+        preparedStatement.setInt(1, tipoContato.getCdTipoContato());
         preparedStatement.setString(2, tipoContato.getNmTipoContato());
         preparedStatement.setDate(3, (Date) tipoContato.getDtInicio());
         preparedStatement.setDate(4, (Date) tipoContato.getDtFim());

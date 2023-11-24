@@ -37,7 +37,7 @@ public class TipoContatoResource {
     @Produces(MediaType.APPLICATION_JSON)
     public TipoContato updateTipoContato(@PathParam("cdTipoContato") String cdTipoContato, TipoContato tipoContato) throws SQLException {
         if (repository.find(cdTipoContato).isPresent()) {
-            tipoContato.setCdTipoContato(cdTipoContato);
+            tipoContato.setCdTipoContato(Integer.valueOf(cdTipoContato));
             repository.update(cdTipoContato, tipoContato);
             return repository.find(cdTipoContato).orElse(null);
         }
