@@ -1,17 +1,17 @@
 package mapped.api.models.entities;
 
 public class Paciente {
-    private String cdPaciente;
+    private int cdPaciente;
     private String nmPaciente;
-    private String nrPeso;
-    private String nrAltura;
+    private int nrPeso;
+    private int nrAltura;
     private String nmGrupoSanguineo;
     private String flSexoBiologico;
 
     public Paciente() {
     }
 
-    public Paciente(String cdPaciente, String nmPaciente, String nrPeso, String nrAltura, String nmGrupoSanguineo, String flSexoBiologico) {
+    public Paciente(int cdPaciente, String nmPaciente, int nrPeso, int nrAltura, String nmGrupoSanguineo, String flSexoBiologico) {
         this.cdPaciente = cdPaciente;
         this.nmPaciente = nmPaciente;
         this.nrPeso = nrPeso;
@@ -20,11 +20,11 @@ public class Paciente {
         this.flSexoBiologico = flSexoBiologico;
     }
 
-    public String getCdPaciente() {
+    public int getCdPaciente() {
         return cdPaciente;
     }
 
-    public void setCdPaciente(String cdPaciente) {
+    public void setCdPaciente(int cdPaciente) {
         this.cdPaciente = cdPaciente;
     }
 
@@ -36,19 +36,19 @@ public class Paciente {
         this.nmPaciente = nmPaciente;
     }
 
-    public String getNrPeso() {
+    public int getNrPeso() {
         return nrPeso;
     }
 
-    public void setNrPeso(String nrPeso) {
+    public void setNrPeso(int nrPeso) {
         this.nrPeso = nrPeso;
     }
 
-    public String getNrAltura() {
+    public int getNrAltura() {
         return nrAltura;
     }
 
-    public void setNrAltura(String nrAltura) {
+    public void setNrAltura(int nrAltura) {
         this.nrAltura = nrAltura;
     }
 

@@ -28,7 +28,7 @@ public class PacienteRepository {
     }
 
     public void add(Paciente paciente) throws SQLException {
-        String sql = "INSERT INTO t_gs_paciente (cdPaciente, nmPaciente, nrPeso, nrAltura, nmGrupoSanguineo, flSexoBiologico) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO t_gs_paciente (cdPaciente, nmPaciente, nrPeso, nrAltura, nmGrupoSanguineo, flSexoBiologico) VALUES (seq_t_gs_paciente.nextval, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -80,20 +80,20 @@ public class PacienteRepository {
 
     private Paciente mapResultSetToPaciente(ResultSet resultSet) throws SQLException {
         Paciente paciente = new Paciente();
-        paciente.setCdPaciente(resultSet.getString("cdPaciente"));
+        paciente.setCdPaciente(resultSet.getInt("cdPaciente"));
         paciente.setNmPaciente(resultSet.getString("nmPaciente"));
-        paciente.setNrPeso(resultSet.getString("nrPeso"));
-        paciente.setNrAltura(resultSet.getString("nrAltura"));
+        paciente.setNrPeso(resultSet.getInt("nrPeso"));
+        paciente.setNrAltura(resultSet.getInt("nrAltura"));
         paciente.setNmGrupoSanguineo(resultSet.getString("nmGrupoSanguineo"));
         paciente.setFlSexoBiologico(resultSet.getString("flSexoBiologico"));
         return paciente;
     }
 
     private void setPacienteParameters(PreparedStatement preparedStatement, Paciente paciente) throws SQLException {
-        preparedStatement.setString(1, paciente.getCdPaciente());
+        preparedStatement.setInt(1, paciente.getCdPaciente());
         preparedStatement.setString(2, paciente.getNmPaciente());
-        preparedStatement.setString(3, paciente.getNrPeso());
-        preparedStatement.setString(4, paciente.getNrAltura());
+        preparedStatement.setInt(3, paciente.getNrPeso());
+        preparedStatement.setInt(4, paciente.getNrAltura());
         preparedStatement.setString(5, paciente.getNmGrupoSanguineo());
         preparedStatement.setString(6, paciente.getFlSexoBiologico());
     }
