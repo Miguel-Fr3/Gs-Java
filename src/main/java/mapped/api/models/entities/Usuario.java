@@ -1,34 +1,34 @@
 package mapped.api.models.entities;
 
+import java.util.Date;
+
 public class Usuario {
 
     private Integer cdUsuario;
     private String nmUsuario;
-    private int dtNascimento;
-    private int dtCadastro;
-    private String nrRG;
-    private String rua;
+    private Date dtNascimento;
+    private Date dtCadastro;
+    private Integer nrRG;
     private String dsEscolaridade;
     private String dsEstadoCivil;
     private String dsNacionalidade;
     private String dsProfissao;
     private Integer fgAtivo;
-    private String cdEndereco;
-    private String cdLogin;
-    private String cdPaciente;
+    private Integer cdEndereco;
+    private Integer cdLogin;
+    private Integer cdPaciente;
 
     public Usuario() {
     }
 
-    public Usuario(Integer cdUsuario, String nmUsuario, int dtNascimento, int dtCadastro, String nrRG, String rua,
+    public Usuario(Integer cdUsuario, String nmUsuario, Date dtNascimento, Date dtCadastro, Integer nrRG,
                    String dsEscolaridade, String dsEstadoCivil, String dsNacionalidade, String dsProfissao,
-                   Integer fgAtivo, String cdEndereco, String cdLogin, String cdPaciente) {
+                   Integer fgAtivo, Integer cdEndereco, Integer cdLogin, Integer cdPaciente) {
         this.cdUsuario = cdUsuario;
         this.nmUsuario = nmUsuario;
         this.dtNascimento = dtNascimento;
         this.dtCadastro = dtCadastro;
         this.nrRG = nrRG;
-        this.rua = rua;
         this.dsEscolaridade = dsEscolaridade;
         this.dsEstadoCivil = dsEstadoCivil;
         this.dsNacionalidade = dsNacionalidade;
@@ -55,37 +55,30 @@ public class Usuario {
         this.nmUsuario = nmUsuario;
     }
 
-    public int getDtNascimento() {
+    public Date getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(int dtNascimento) {
+    public void setDtNascimento(Date dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 
-    public int getDtCadastro() {
+    public Date getDtCadastro() {
         return dtCadastro;
     }
 
-    public void setDtCadastro(int dtCadastro) {
+    public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
     }
 
-    public String getNrRG() {
+    public Integer getNrRG() {
         return nrRG;
     }
 
-    public void setNrRG(String nrRG) {
+    public void setNrRG(Integer nrRG) {
         this.nrRG = nrRG;
     }
 
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
 
     public String getDsEscolaridade() {
         return dsEscolaridade;
@@ -127,27 +120,27 @@ public class Usuario {
         this.fgAtivo = fgAtivo;
     }
 
-    public String getCdEndereco() {
+    public Integer getCdEndereco() {
         return cdEndereco;
     }
 
-    public void setCdEndereco(String cdEndereco) {
+    public void setCdEndereco(Integer cdEndereco) {
         this.cdEndereco = cdEndereco;
     }
 
-    public String getCdLogin() {
+    public Integer getCdLogin() {
         return cdLogin;
     }
 
-    public void setCdLogin(String cdLogin) {
+    public void setCdLogin(Integer cdLogin) {
         this.cdLogin = cdLogin;
     }
 
-    public String getCdPaciente() {
+    public Integer getCdPaciente() {
         return cdPaciente;
     }
 
-    public void setCdPaciente(String cdPaciente) {
+    public void setCdPaciente(Integer cdPaciente) {
         this.cdPaciente = cdPaciente;
     }
 }
