@@ -18,19 +18,10 @@ public class LoginResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getLogins() {
-        try {
-            List<Login> logins = repository.findAll();
-            if (!logins.isEmpty()) {
-                return Response.status(Response.Status.OK).entity(logins).build();
-            } else {
-                return Response.status(Response.Status.NO_CONTENT).build();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Erro interno ao buscar logins").build();
-        }
+    public List<Login> getLogin() throws SQLException {
+        return repository.findAll();
     }
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

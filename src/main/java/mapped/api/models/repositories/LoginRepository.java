@@ -21,7 +21,8 @@ public class LoginRepository {
                 logins.add(new Login(
                         results.getInt("cdLogin"),
                         results.getString("dsEmail"),
-                        results.getString("dsSenha")));
+                        results.getString("dsSenha"),
+                        results.getInt("fgAtivo")));
             }
         }
         return logins;
