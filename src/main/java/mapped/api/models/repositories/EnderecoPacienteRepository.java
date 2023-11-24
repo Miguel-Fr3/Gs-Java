@@ -14,7 +14,7 @@ public class EnderecoPacienteRepository {
 
     public List<EnderecoPaciente> findAll() throws SQLException {
         List<EnderecoPaciente> enderecos = new ArrayList<>();
-        String sql = "SELECT * FROM tabela_endereco_paciente";
+        String sql = "SELECT * FROM t_gs_endereco_paciente";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql);
@@ -27,7 +27,7 @@ public class EnderecoPacienteRepository {
     }
 
     public void add(EnderecoPaciente endereco) throws SQLException {
-        String sql = "INSERT INTO tabela_endereco_paciente (cdEndereco, nrLogradouro, dsComplemento, dsPontoReferencia, cdLogradouro) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO t_gs_endereco_paciente (cdEndereco, nrLogradouro, dsComplemento, dsPontoReferencia, cdLogradouro) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -37,7 +37,7 @@ public class EnderecoPacienteRepository {
     }
 
     public Optional<EnderecoPaciente> find(String cdEndereco) throws SQLException {
-        String sql = "SELECT * FROM tabela_endereco_paciente WHERE cdEndereco = ?";
+        String sql = "SELECT * FROM t_gs_endereco_paciente WHERE cdEndereco = ?";
         EnderecoPaciente endereco = null;
 
         try (Connection conn = DatabaseFactory.getConnection();
@@ -54,7 +54,7 @@ public class EnderecoPacienteRepository {
     }
 
     public void update(String cdEndereco, EnderecoPaciente endereco) {
-        String sql = "UPDATE tabela_endereco_paciente SET nrLogradouro=?, dsComplemento=?, dsPontoReferencia=?, cdLogradouro=? WHERE cdEndereco=?";
+        String sql = "UPDATE t_gs_endereco_paciente SET nrLogradouro=?, dsComplemento=?, dsPontoReferencia=?, cdLogradouro=? WHERE cdEndereco=?";
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             setEnderecoPacienteParameters(statement, endereco);
@@ -66,7 +66,7 @@ public class EnderecoPacienteRepository {
     }
 
     public void delete(String cdEndereco) {
-        String sql = "DELETE FROM tabela_endereco_paciente WHERE cdEndereco = ?";
+        String sql = "DELETE FROM t_gs_endereco_paciente WHERE cdEndereco = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -79,19 +79,19 @@ public class EnderecoPacienteRepository {
 
     private EnderecoPaciente mapResultSetToEnderecoPaciente(ResultSet resultSet) throws SQLException {
         EnderecoPaciente endereco = new EnderecoPaciente();
-        endereco.setCdEndereco(resultSet.getString("cdEndereco"));
-        endereco.setNrLogradouro(resultSet.getString("nrLogradouro"));
+        endereco.setCdEndereco(resultSet.getInt("cdEndereco"));
+        endereco.setNrLogradouro(resultSet.getInt("nrLogradouro"));
         endereco.setDsComplemento(resultSet.getString("dsComplemento"));
         endereco.setDsPontoReferencia(resultSet.getString("dsPontoReferencia"));
-        endereco.setCdLogradouro(resultSet.getString("cdLogradouro"));
+        endereco.setCdLogradouro(resultSet.getInt("cdLogradouro"));
         return endereco;
     }
 
     private void setEnderecoPacienteParameters(PreparedStatement preparedStatement, EnderecoPaciente endereco) throws SQLException {
-        preparedStatement.setString(1, endereco.getCdEndereco());
-        preparedStatement.setString(2, endereco.getNrLogradouro());
+        preparedStatement.setInt(1, endereco.getCdEndereco());
+        preparedStatement.setInt(2, endereco.getNrLogradouro());
         preparedStatement.setString(3, endereco.getDsComplemento());
         preparedStatement.setString(4, endereco.getDsPontoReferencia());
-        preparedStatement.setString(5, endereco.getCdLogradouro());
+        preparedStatement.setInt(5, endereco.getCdLogradouro());
     }
 }

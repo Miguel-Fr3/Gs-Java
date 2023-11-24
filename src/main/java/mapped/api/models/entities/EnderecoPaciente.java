@@ -2,17 +2,16 @@ package mapped.api.models.entities;
 
 public class EnderecoPaciente {
 
-    private String cdEndereco;
-    private String nrLogradouro;
+    private int cdEndereco;
+    private int nrLogradouro;
     private String dsComplemento;
     private String dsPontoReferencia;
-    private String cdLogradouro;
+    private int cdLogradouro;
 
     public EnderecoPaciente() {
     }
 
-    public EnderecoPaciente(String cdEndereco, String nrLogradouro, String dsComplemento,
-                            String dsPontoReferencia, String cdLogradouro) {
+    public EnderecoPaciente(int cdEndereco, int nrLogradouro, String dsComplemento, String dsPontoReferencia, int cdLogradouro) {
         this.cdEndereco = cdEndereco;
         this.nrLogradouro = nrLogradouro;
         this.dsComplemento = dsComplemento;
@@ -20,19 +19,19 @@ public class EnderecoPaciente {
         this.cdLogradouro = cdLogradouro;
     }
 
-    public String getCdEndereco() {
+    public int getCdEndereco() {
         return cdEndereco;
     }
 
-    public void setCdEndereco(String cdEndereco) {
+    public void setCdEndereco(int cdEndereco) {
         this.cdEndereco = cdEndereco;
     }
 
-    public String getNrLogradouro() {
+    public int getNrLogradouro() {
         return nrLogradouro;
     }
 
-    public void setNrLogradouro(String nrLogradouro) {
+    public void setNrLogradouro(int nrLogradouro) {
         this.nrLogradouro = nrLogradouro;
     }
 
@@ -52,11 +51,11 @@ public class EnderecoPaciente {
         this.dsPontoReferencia = dsPontoReferencia;
     }
 
-    public String getCdLogradouro() {
+    public int getCdLogradouro() {
         return cdLogradouro;
     }
 
-    public void setCdLogradouro(String cdLogradouro) {
+    public void setCdLogradouro(int cdLogradouro) {
         this.cdLogradouro = cdLogradouro;
     }
 }
