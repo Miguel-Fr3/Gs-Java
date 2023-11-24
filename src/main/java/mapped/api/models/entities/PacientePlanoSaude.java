@@ -1,17 +1,19 @@
 package mapped.api.models.entities;
 
+import java.util.Date;
+
 public class PacientePlanoSaude {
-    private String cdPlanoPaciente;
-    private String nrCarteira;
-    private int dtInicio;
-    private int dtFim;
-    private String cdPaciente;
-    private String cdPlanoSaude;
+    private int cdPlanoPaciente;
+    private int nrCarteira;
+    private Date dtInicio;
+    private Date dtFim;
+    private int cdPaciente;
+    private int cdPlanoSaude;
 
     public PacientePlanoSaude() {
     }
 
-    public PacientePlanoSaude(String cdPlanoPaciente, String nrCarteira, int dtInicio, int dtFim, String cdPaciente, String cdPlanoSaude) {
+    public PacientePlanoSaude(int cdPlanoPaciente, int nrCarteira, Date dtInicio, Date dtFim, int cdPaciente, int cdPlanoSaude) {
         this.cdPlanoPaciente = cdPlanoPaciente;
         this.nrCarteira = nrCarteira;
         this.dtInicio = dtInicio;
@@ -20,51 +22,51 @@ public class PacientePlanoSaude {
         this.cdPlanoSaude = cdPlanoSaude;
     }
 
-    public String getCdPlanoPaciente() {
+    public int getCdPlanoPaciente() {
         return cdPlanoPaciente;
     }
 
-    public void setCdPlanoPaciente(String cdPlanoPaciente) {
+    public void setCdPlanoPaciente(int cdPlanoPaciente) {
         this.cdPlanoPaciente = cdPlanoPaciente;
     }
 
-    public String getNrCarteira() {
+    public int getNrCarteira() {
         return nrCarteira;
     }
 
-    public void setNrCarteira(String nrCarteira) {
+    public void setNrCarteira(int nrCarteira) {
         this.nrCarteira = nrCarteira;
     }
 
-    public int getDtInicio() {
+    public Date getDtInicio() {
         return dtInicio;
     }
 
-    public void setDtInicio(int dtInicio) {
+    public void setDtInicio(Date dtInicio) {
         this.dtInicio = dtInicio;
     }
 
-    public int getDtFim() {
+    public Date getDtFim() {
         return dtFim;
     }
 
-    public void setDtFim(int dtFim) {
+    public void setDtFim(Date dtFim) {
         this.dtFim = dtFim;
     }
 
-    public String getCdPaciente() {
+    public int getCdPaciente() {
         return cdPaciente;
     }
 
-    public void setCdPaciente(String cdPaciente) {
+    public void setCdPaciente(int cdPaciente) {
         this.cdPaciente = cdPaciente;
     }
 
-    public String getCdPlanoSaude() {
+    public int getCdPlanoSaude() {
         return cdPlanoSaude;
     }
 
-    public void setCdPlanoSaude(String cdPlanoSaude) {
+    public void setCdPlanoSaude(int cdPlanoSaude) {
         this.cdPlanoSaude = cdPlanoSaude;
     }
 }
