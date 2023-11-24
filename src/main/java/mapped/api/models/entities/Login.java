@@ -7,13 +7,17 @@ public class Login {
     private Integer fgAtivo;
 
     public Login() {
+
+        this.fgAtivo = 1;
     }
 
     public Login(int cdLogin, String dsEmail, String dsSenha, Integer fgAtivo) {
         this.cdLogin = cdLogin;
         this.dsEmail = dsEmail;
         this.dsSenha = dsSenha;
-        this.fgAtivo = fgAtivo;
+
+
+        this.fgAtivo = (fgAtivo != null) ? fgAtivo : 1;
     }
 
     public int getCdLogin() {

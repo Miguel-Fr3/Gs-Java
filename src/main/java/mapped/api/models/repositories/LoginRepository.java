@@ -36,10 +36,18 @@ public class LoginRepository {
             statement.setInt(1, login.getCdLogin());
             statement.setString(2, login.getDsEmail());
             statement.setString(3, login.getDsSenha());
-            statement.setInt(4, login.getFgAtivo());
+
+
+            if (login.getFgAtivo() != null) {
+                statement.setInt(4, login.getFgAtivo());
+            } else {
+
+                statement.setInt(4, 1);
+            }
+
             statement.executeUpdate();
         } catch (SQLIntegrityConstraintViolationException e) {
-
+            System.err.println("Erro: Violação de chave única. Certifique-se de que a sequência 'seq_tb_ps_login' está configurada corretamente.");
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao adicionar login", e);
         }
@@ -65,6 +73,35 @@ public class LoginRepository {
             }
         }
         return Optional.empty();
+    }
+
+    public Login login(String Email) throws SQLException {
+        String sql = "SELECT * FROM T_GS_LOGIN WHERE dsEmail = ?";
+
+        try (Connection conn = DatabaseFactory.getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)) {
+            try {
+                statement.setString(1, Email);
+
+
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("email inválido", e);
+            }
+
+            try (ResultSet rs = statement.executeQuery()) {
+                Login login = new Login();
+
+                if (rs.next()) {
+                    login.setCdLogin(rs.getInt("cdLOGIN"));
+                    login.setDsEmail(String.valueOf(rs.getLong("dsEmail")));
+                    login.setDsSenha(rs.getString("DSSENHA"));
+                    login.setFgAtivo(Integer.valueOf(rs.getString("fgAtivo")));
+                }
+
+                return login;
+            }
+        }
+
     }
 
     public void update(Login login) throws SQLException {
