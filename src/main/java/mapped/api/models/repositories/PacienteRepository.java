@@ -28,7 +28,7 @@ public class PacienteRepository {
     }
 
     public void add(Paciente paciente) throws SQLException {
-        String sql = "INSERT INTO t_gs_paciente (cdPaciente, nmPaciente, nrPeso, nrAltura, nmGrupoSanguineo, flSexoBiologico) VALUES (seq_t_gs_paciente.nextval, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO t_gs_paciente (cdPaciente, nmPaciente, nrPeso, nrAltura, nmGrupoSanguineo, flSexoBiologico) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
