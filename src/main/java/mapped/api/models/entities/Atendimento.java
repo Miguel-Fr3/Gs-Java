@@ -1,22 +1,23 @@
 package mapped.api.models.entities;
 
+import java.util.Date;
+
 public class Atendimento {
 
-    private String cdAtendimento;
-    private String cdDescricao;
-    private String qtDias;
+    private int cdAtendimento;
+    private int cdDescricao;
+    private int qtDias;
     private String dsHabito;
     private String dsTempoSono;
     private String dsHereditaria;
-    private int dtEnvio;
-    private String fgTipo;
-    private String cdPaciente;
+    private Date dtEnvio;
+    private int fgTipo;
+    private int cdPaciente;
 
     public Atendimento() {
     }
 
-    public Atendimento(String cdAtendimento, String cdDescricao, String qtDias, String dsHabito, String dsTempoSono,
-                       String dsHereditaria, int dtEnvio, String fgTipo, String cdPaciente) {
+    public Atendimento(int cdAtendimento, int cdDescricao, int qtDias, String dsHabito, String dsTempoSono, String dsHereditaria, Date dtEnvio, int fgTipo, int cdPaciente) {
         this.cdAtendimento = cdAtendimento;
         this.cdDescricao = cdDescricao;
         this.qtDias = qtDias;
@@ -28,27 +29,27 @@ public class Atendimento {
         this.cdPaciente = cdPaciente;
     }
 
-    public String getCdAtendimento() {
+    public int getCdAtendimento() {
         return cdAtendimento;
     }
 
-    public void setCdAtendimento(String cdAtendimento) {
+    public void setCdAtendimento(int cdAtendimento) {
         this.cdAtendimento = cdAtendimento;
     }
 
-    public String getCdDescricao() {
+    public int getCdDescricao() {
         return cdDescricao;
     }
 
-    public void setCdDescricao(String cdDescricao) {
+    public void setCdDescricao(int cdDescricao) {
         this.cdDescricao = cdDescricao;
     }
 
-    public String getQtDias() {
+    public int getQtDias() {
         return qtDias;
     }
 
-    public void setQtDias(String qtDias) {
+    public void setQtDias(int qtDias) {
         this.qtDias = qtDias;
     }
 
@@ -76,27 +77,27 @@ public class Atendimento {
         this.dsHereditaria = dsHereditaria;
     }
 
-    public int getDtEnvio() {
+    public Date getDtEnvio() {
         return dtEnvio;
     }
 
-    public void setDtEnvio(int dtEnvio) {
+    public void setDtEnvio(Date dtEnvio) {
         this.dtEnvio = dtEnvio;
     }
 
-    public String getFgTipo() {
+    public int getFgTipo() {
         return fgTipo;
     }
 
-    public void setFgTipo(String fgTipo) {
+    public void setFgTipo(int fgTipo) {
         this.fgTipo = fgTipo;
     }
 
-    public String getCdPaciente() {
+    public int getCdPaciente() {
         return cdPaciente;
     }
 
-    public void setCdPaciente(String cdPaciente) {
+    public void setCdPaciente(int cdPaciente) {
         this.cdPaciente = cdPaciente;
     }
 }

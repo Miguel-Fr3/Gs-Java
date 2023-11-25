@@ -15,7 +15,7 @@ public class BairroRepository {
 
     public List<Bairro> findAll() throws SQLException {
         List<Bairro> bairros = new ArrayList<>();
-        String sql = "SELECT * FROM tabela_bairro";
+        String sql = "SELECT * FROM t_gs_bairro";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql);
@@ -28,7 +28,7 @@ public class BairroRepository {
     }
 
     public void add(Bairro bairro) throws SQLException {
-        String sql = "INSERT INTO tabela_bairro (cdBairro, nmBairro, nmZonaBairro, cdCidade) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO t_gs_bairro (cdBairro, nmBairro, nmZonaBairro, cdCidade) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -38,7 +38,7 @@ public class BairroRepository {
     }
 
     public Optional<Bairro> find(int cdBairro) throws SQLException {
-        String sql = "SELECT * FROM tabela_bairro WHERE cdBairro = ?";
+        String sql = "SELECT * FROM t_gs_bairro WHERE cdBairro = ?";
         Bairro bairro = null;
 
         try (Connection conn = DatabaseFactory.getConnection();
@@ -55,7 +55,7 @@ public class BairroRepository {
     }
 
     public void update(int cdBairro, Bairro bairro) {
-        String sql = "UPDATE tabela_bairro SET nmBairro=?, nmZonaBairro=?, cdCidade=? WHERE cdBairro=?";
+        String sql = "UPDATE t_gs_bairro SET nmBairro=?, nmZonaBairro=?, cdCidade=? WHERE cdBairro=?";
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             setBairroParameters(statement, bairro);
@@ -67,7 +67,7 @@ public class BairroRepository {
     }
 
     public void delete(int cdBairro) {
-        String sql = "DELETE FROM tabela_bairro WHERE cdBairro = ?";
+        String sql = "DELETE FROM t_gs_bairro WHERE cdBairro = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -83,7 +83,7 @@ public class BairroRepository {
         bairro.setCdBairro(resultSet.getInt("cdBairro"));
         bairro.setNmBairro(resultSet.getString("nmBairro"));
         bairro.setNmZonaBairro(resultSet.getString("nmZonaBairro"));
-        bairro.setCdCidade(resultSet.getString("cdCidade"));
+        bairro.setCdCidade(resultSet.getInt("cdCidade"));
         return bairro;
     }
 
@@ -91,6 +91,6 @@ public class BairroRepository {
         preparedStatement.setInt(1, bairro.getCdBairro());
         preparedStatement.setString(2, bairro.getNmBairro());
         preparedStatement.setString(3, bairro.getNmZonaBairro());
-        preparedStatement.setString(4, bairro.getCdCidade());
+        preparedStatement.setInt(4, bairro.getCdCidade());
     }
 }

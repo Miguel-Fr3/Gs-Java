@@ -38,7 +38,7 @@ public class CidadeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Cidade updateCidade(@PathParam("cdCidade") String cdCidade, Cidade cidade) throws SQLException {
         if (repository.find(cdCidade).isPresent()) {
-            cidade.setCdCidade(cdCidade);
+            cidade.setCdCidade(Integer.parseInt(cdCidade));
             repository.update(cdCidade, cidade);
             return repository.find(cdCidade).orElse(null);
         }

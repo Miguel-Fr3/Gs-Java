@@ -5,12 +5,12 @@ public class Bairro {
     private Integer cdBairro;
     private String nmBairro;
     private String nmZonaBairro;
-    private String cdCidade;
+    private int cdCidade;
 
     public Bairro() {
     }
 
-    public Bairro(Integer cdBairro, String nmBairro, String nmZonaBairro, String cdCidade) {
+    public Bairro(Integer cdBairro, String nmBairro, String nmZonaBairro, int cdCidade) {
         this.cdBairro = cdBairro;
         this.nmBairro = nmBairro;
         this.nmZonaBairro = nmZonaBairro;
@@ -41,11 +41,11 @@ public class Bairro {
         this.nmZonaBairro = nmZonaBairro;
     }
 
-    public String getCdCidade() {
+    public int getCdCidade() {
         return cdCidade;
     }
 
-    public void setCdCidade(String cdCidade) {
+    public void setCdCidade(int cdCidade) {
         this.cdCidade = cdCidade;
     }
 }

@@ -28,7 +28,7 @@ public class PacienteResource {
     @Path("/{cdPaciente}")
     @Produces(MediaType.APPLICATION_JSON)
     public Paciente getPacienteByCd(@PathParam("cdPaciente") String cdPaciente) throws SQLException {
-        return repository.find(cdPaciente).orElse(null);
+        return repository.find(Integer.parseInt(cdPaciente)).orElse(null);
     }
 
     @PUT
@@ -36,10 +36,10 @@ public class PacienteResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Paciente updatePaciente(@PathParam("cdPaciente") String cdPaciente, Paciente paciente) throws SQLException {
-        if (repository.find(cdPaciente).isPresent()) {
+        if (repository.find(Integer.parseInt(cdPaciente)).isPresent()) {
             paciente.setCdPaciente(Integer.parseInt(cdPaciente));
-            repository.update(cdPaciente, paciente);
-            return repository.find(cdPaciente).orElse(null);
+            repository.update(Integer.parseInt(cdPaciente), paciente);
+            return repository.find(Integer.parseInt(cdPaciente)).orElse(null);
         }
         return paciente;
     }
@@ -47,8 +47,8 @@ public class PacienteResource {
     @DELETE
     @Path("/{cdPaciente}")
     public void deletePaciente(@PathParam("cdPaciente") String cdPaciente) throws SQLException {
-        if (repository.find(cdPaciente).isPresent()) {
-            repository.delete(cdPaciente);
+        if (repository.find(Integer.parseInt(cdPaciente)).isPresent()) {
+            repository.delete(Integer.parseInt(cdPaciente));
         }
     }
 }

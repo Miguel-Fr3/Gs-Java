@@ -37,7 +37,7 @@ public class PacientePlanoSaudeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public PacientePlanoSaude updatePacientePlanoSaude(@PathParam("cdPlanoPaciente") String cdPlanoPaciente, PacientePlanoSaude pacientePlanoSaude) throws SQLException {
         if (repository.find(cdPlanoPaciente).isPresent()) {
-            pacientePlanoSaude.setCdPlanoPaciente(cdPlanoPaciente);
+            pacientePlanoSaude.setCdPlanoPaciente(Integer.parseInt(cdPlanoPaciente));
             repository.update(cdPlanoPaciente, pacientePlanoSaude);
             return repository.find(cdPlanoPaciente).orElse(null);
         }

@@ -37,13 +37,13 @@ public class PacienteRepository {
         }
     }
 
-    public Optional<Paciente> find(String cdPaciente) throws SQLException {
+    public Optional<Paciente> find(int cdPaciente) throws SQLException {
         String sql = "SELECT * FROM t_gs_paciente WHERE cdPaciente = ?";
         Paciente paciente = null;
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setString(1, cdPaciente);
+            statement.setInt(1, cdPaciente);
 
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
@@ -54,24 +54,24 @@ public class PacienteRepository {
         return Optional.ofNullable(paciente);
     }
 
-    public void update(String cdPaciente, Paciente paciente) {
+    public void update(int cdPaciente, Paciente paciente) {
         String sql = "UPDATE t_gs_paciente SET nmPaciente=?, nrPeso=?, nrAltura=?, nmGrupoSanguineo=?, flSexoBiologico=? WHERE cdPaciente=?";
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             setPacienteParameters(statement, paciente);
-            statement.setString(6, cdPaciente);
+            statement.setInt(6, cdPaciente);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void delete(String cdPaciente) {
+    public void delete(int cdPaciente) {
         String sql = "DELETE FROM t_gs_paciente WHERE cdPaciente = ?";
 
         try (Connection conn = DatabaseFactory.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setString(1, cdPaciente);
+            statement.setInt(1, cdPaciente);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

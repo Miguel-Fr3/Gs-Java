@@ -22,15 +22,15 @@ public class PacienteService {
         pacienteRepository.add(paciente);
     }
 
-    public Optional<Paciente> find(String cdPaciente) throws SQLException {
+    public Optional<Paciente> find(int cdPaciente) throws SQLException {
         return pacienteRepository.find(cdPaciente);
     }
 
-    public void update(String cdPaciente, Paciente paciente) throws SQLException {
+    public void update(int cdPaciente, Paciente paciente) throws SQLException {
         pacienteRepository.update(cdPaciente, paciente);
     }
 
-    public void delete(String cdPaciente) throws SQLException {
+    public void delete(int cdPaciente) throws SQLException {
         pacienteRepository.delete(cdPaciente);
     }
 }

@@ -35,11 +35,11 @@ public class EnderecoPacienteResource {
     @Path("/{cdEndereco}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public EnderecoPaciente updateEnderecoPaciente(@PathParam("cdEndereco") String cdEndereco, EnderecoPaciente enderecoPaciente) throws SQLException {
-        if (repository.find(cdEndereco).isPresent()) {
+    public EnderecoPaciente updateEnderecoPaciente(@PathParam("cdEndereco") int cdEndereco, EnderecoPaciente enderecoPaciente) throws SQLException {
+        if (repository.find(String.valueOf(cdEndereco)).isPresent()) {
             enderecoPaciente.setCdEndereco(cdEndereco);
-            repository.update(cdEndereco, enderecoPaciente);
-            return repository.find(cdEndereco).orElse(null);
+            repository.update(String.valueOf(cdEndereco), enderecoPaciente);
+            return repository.find(String.valueOf(cdEndereco)).orElse(null);
         }
         return enderecoPaciente;
     }

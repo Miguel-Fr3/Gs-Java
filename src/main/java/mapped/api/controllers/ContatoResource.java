@@ -37,7 +37,7 @@ public class ContatoResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Contato updateContato(@PathParam("cdContato") String cdContato, Contato contato) throws SQLException {
         if (repository.find(cdContato).isPresent()) {
-            contato.setCdContato(cdContato);
+            contato.setCdContato(Integer.parseInt(cdContato));
             repository.update(cdContato, contato);
             return repository.find(cdContato).orElse(null);
         }

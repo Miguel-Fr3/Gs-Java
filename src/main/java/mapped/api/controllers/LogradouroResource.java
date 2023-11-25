@@ -37,7 +37,7 @@ public class LogradouroResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Logradouro updateLogradouro(@PathParam("cdLogradouro") String cdLogradouro, Logradouro logradouro) throws SQLException {
         if (repository.find(cdLogradouro).isPresent()) {
-            logradouro.setCdLogradouro(cdLogradouro);
+            logradouro.setCdLogradouro(Integer.parseInt(cdLogradouro));
             repository.update(cdLogradouro, logradouro);
             return repository.find(cdLogradouro).orElse(null);
         }
